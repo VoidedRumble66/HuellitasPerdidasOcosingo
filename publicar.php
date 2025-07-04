@@ -64,6 +64,7 @@ $razas = $conexion->query("SELECT id_raza, nombre FROM raza")->fetch_all(MYSQLI_
               <option value="<?= $r['id_raza'] ?>"><?= htmlspecialchars($r['nombre']) ?></option>
             <?php endforeach; ?>
           </select>
+          <input type="text" id="raza" name="raza" class="entrada-texto">
         </div>
         <div class="col-md-4 grupo-formulario">
           <label for="ubicacion">Zona o colonia:</label>

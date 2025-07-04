@@ -10,12 +10,19 @@ require 'php/conexion.php';
 include 'php/head.php';
 include 'php/menu.php';
 
+
 $sql = "SELECT m.id_mascota, m.nombredemascota, e.nombre AS especie, r.nombre AS raza, m.ubicacion, m.foto
         FROM mascota m
         LEFT JOIN especie e ON m.id_especie = e.id_especie
         LEFT JOIN raza r ON m.id_raza = r.id_raza
         ORDER BY m.fechadeextravio DESC";
 $resultado = $conexion->query($sql);
+
+$resultado = $conexion->query("SELECT id_mascota, nombredemascota, especie, raza, ubicacion, foto FROM mascota ORDER BY fechadeextravio DESC");
+
+$resultado = $conexion->query("SELECT id, nombredemascota, especie, raza, ubicacion, foto FROM mascota ORDER BY fechadeextravio DESC");
+
+
 $mascotas = $resultado ? $resultado->fetch_all(MYSQLI_ASSOC) : [];
 ?>
 
@@ -34,6 +41,10 @@ $mascotas = $resultado ? $resultado->fetch_all(MYSQLI_ASSOC) : [];
             <p><?= htmlspecialchars($m['especie']) ?> - <?= htmlspecialchars($m['raza']) ?></p>
             <p><strong>Zona:</strong> <?= htmlspecialchars($m['ubicacion']) ?></p>
             <a href="detalle-mascota.php?id=<?= $m['id_mascota'] ?>" class="boton-contorno">Ver más</a>
+
+
+            <a href="detalle-mascota.php?id=<?= $m['id'] ?>" class="boton-contorno">Ver más</a>
+
           </div>
         </div>
       </div>

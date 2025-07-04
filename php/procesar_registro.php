@@ -20,12 +20,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$conexion->connect_errno) {
         $c = $conexion->prepare('SELECT id_usuario FROM usuario WHERE correo = ?');
+
+
+        $c = $conexion->prepare('SELECT id FROM usuarios WHERE email = ?');
+
         $c->bind_param('s', $email);
         $c->execute();
         if ($c->get_result()->num_rows > 0) {
             $_SESSION['flash'] = 'El correo ya está registrado';
         } else {
             $stmt = $conexion->prepare('INSERT INTO usuario(nombre, correo, telefono, fechanacimiento, password) VALUES (?,?,?,?,?)');
+
+
+            $stmt = $conexion->prepare('INSERT INTO usuarios(nombre, email, telefono, nacimiento, password) VALUES (?,?,?,?,?)');
+
             $stmt->bind_param('sssss', $nombre, $email, $telefono, $nacimiento, $password);
             if ($stmt->execute()) {
                 $_SESSION['usuario_id'] = $stmt->insert_id;
@@ -34,6 +42,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $_SESSION['flash'] = 'Error al registrar';
             }
+
+
+
+    $password = password_hash($_POST['password'] ?? '', PASSWORD_DEFAULT);
+
+    if (!$conexion->connect_errno) {
+        $stmt = $conexion->prepare('INSERT INTO usuarios(nombre, email, password) VALUES (?,?,?)');
+        $stmt->bind_param('sss', $nombre, $email, $password);
+        if ($stmt->execute()) {
+            $_SESSION['usuario_id'] = $stmt->insert_id;
+            header('Location: ../index.php');
+            exit;
+        } else {
+            $_SESSION['flash'] = 'Error al registrar';
+
+
+
         }
     } else {
         $_SESSION['flash'] = 'Error de conexión';
