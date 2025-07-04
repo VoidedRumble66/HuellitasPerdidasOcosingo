@@ -92,6 +92,7 @@ $recientes = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+
     let indice = 0;
     const diapositivas = Array.from(document.querySelectorAll('.diapositiva'));
     const siguiente = document.querySelector('.next');
