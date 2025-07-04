@@ -8,14 +8,15 @@ session_start();
     <nav>
       <ul class="lista-navegacion">
         <li><a href="index.php" class="enlace-navegacion">Inicio</a></li>
-        <li><a href="publicar.php" class="enlace-navegacion">Publicar</a></li>
-        <li><a href="extraviados.php" class="enlace-navegacion">Extraviados</a></li>
-        <li><a href="contacto.php" class="enlace-navegacion">Contáctanos</a></li>
-        <li><a href="nosotros.php" class="enlace-navegacion">Nosotros</a></li>
         <?php if(isset($_SESSION['usuario_id'])): ?>
+          <li><a href="publicar.php" class="enlace-navegacion">Publicar</a></li>
+          <li><a href="extraviados.php" class="enlace-navegacion">Extraviados</a></li>
+          <li><a href="contacto.php" class="enlace-navegacion">Contáctanos</a></li>
+          <li><a href="nosotros.php" class="enlace-navegacion">Nosotros</a></li>
           <li><a href="php/cerrar_sesion.php" class="enlace-navegacion">Cerrar sesión</a></li>
         <?php else: ?>
           <li><a href="login.php" class="enlace-navegacion">Iniciar sesión</a></li>
+          <li><a href="registro.php" class="enlace-navegacion">Registro</a></li>
         <?php endif; ?>
       </ul>
     </nav>
