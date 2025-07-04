@@ -5,7 +5,11 @@ require 'php/conexion.php';
 include 'php/head.php';
 include 'php/menu.php';
 
+
 $res = $conexion->query("SELECT id_mascota, nombredemascota, especie, raza, foto FROM mascota ORDER BY fechadeextravio DESC LIMIT 4");
+
+$res = $conexion->query("SELECT id, nombredemascota, especie, raza, foto FROM mascota ORDER BY fechadeextravio DESC LIMIT 4");
+
 $recientes = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
 ?>
 
@@ -43,6 +47,9 @@ $recientes = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
             <h3 class="nombre-mascota"><?= htmlspecialchars($m['nombredemascota']) ?></h3>
             <p><?= htmlspecialchars($m['especie']) ?> - <?= htmlspecialchars($m['raza']) ?></p>
             <a href="detalle-mascota.php?id=<?= $m['id_mascota'] ?>" class="boton-contorno">Ver más</a>
+
+            <a href="detalle-mascota.php?id=<?= $m['id'] ?>" class="boton-contorno">Ver más</a>
+
           </div>
         </div>
       </div>
@@ -73,6 +80,7 @@ $recientes = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
           <div class="circulo bg-success text-white mb-2">1</div>
           <p>Registra o reporta la mascota.</p>
         </div>
+
       </div>
       <div class="col-md-4 mb-3">
         <div class="paso">
@@ -82,6 +90,18 @@ $recientes = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
       </div>
       <div class="col-md-4 mb-3">
         <div class="paso">
+
+
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="paso">
+          <div class="circulo bg-success text-white mb-2">2</div>
+          <p>Comparte la información con la comunidad.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="paso">
+
           <div class="circulo bg-success text-white mb-2">3</div>
           <p>Reúne a la familia con su mascota.</p>
         </div>
@@ -92,6 +112,7 @@ $recientes = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+
     let indice = 0;
     const diapositivas = Array.from(document.querySelectorAll('.diapositiva'));
     const siguiente = document.querySelector('.next');
