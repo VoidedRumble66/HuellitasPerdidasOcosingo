@@ -6,6 +6,7 @@ if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
 $tituloPagina = 'Publicar Mascota';
+require 'php/conexion.php';
 include 'php/head.php';   // Carga <head> y apertura de <body>
 include 'php/menu.php';   // Carga el menú de navegación
 $especies = $conexion->query("SELECT id_especie, nombre FROM especie")->fetch_all(MYSQLI_ASSOC);
