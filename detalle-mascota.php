@@ -13,7 +13,7 @@ include 'php/menu.php';
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $mascota = null;
 if ($id > 0) {
-    $stmt = $conexion->prepare('SELECT nombredemascota, especie, raza, descripcion, foto, ubicacion, fechadeextravio FROM mascota WHERE id = ?');
+    $stmt = $conexion->prepare('SELECT nombredemascota, especie, raza, descripcion, foto, ubicacion, fechadeextravio FROM mascota WHERE id_mascota = ?');
     $stmt->bind_param('i', $id);
     $stmt->execute();
     $mascota = $stmt->get_result()->fetch_assoc();

@@ -19,13 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = password_hash($passwordRaw, PASSWORD_DEFAULT);
 
     if (!$conexion->connect_errno) {
-        $c = $conexion->prepare('SELECT id FROM usuarios WHERE email = ?');
+        $c = $conexion->prepare('SELECT id_usuario FROM usuario WHERE correo = ?');
         $c->bind_param('s', $email);
         $c->execute();
         if ($c->get_result()->num_rows > 0) {
             $_SESSION['flash'] = 'El correo ya está registrado';
         } else {
-            $stmt = $conexion->prepare('INSERT INTO usuarios(nombre, email, telefono, nacimiento, password) VALUES (?,?,?,?,?)');
+            $stmt = $conexion->prepare('INSERT INTO usuario(nombre, correo, telefono, fechanacimiento, password) VALUES (?,?,?,?,?)');
             $stmt->bind_param('sssss', $nombre, $email, $telefono, $nacimiento, $password);
             if ($stmt->execute()) {
                 $_SESSION['usuario_id'] = $stmt->insert_id;

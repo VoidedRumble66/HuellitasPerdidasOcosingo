@@ -10,7 +10,7 @@ require 'php/conexion.php';
 include 'php/head.php';
 include 'php/menu.php';
 
-$resultado = $conexion->query("SELECT id, nombredemascota, especie, raza, ubicacion, foto FROM mascota ORDER BY fechadeextravio DESC");
+$resultado = $conexion->query("SELECT id_mascota, nombredemascota, especie, raza, ubicacion, foto FROM mascota ORDER BY fechadeextravio DESC");
 $mascotas = $resultado ? $resultado->fetch_all(MYSQLI_ASSOC) : [];
 ?>
 
@@ -28,7 +28,7 @@ $mascotas = $resultado ? $resultado->fetch_all(MYSQLI_ASSOC) : [];
             <h3 class="nombre-mascota"><?= htmlspecialchars($m['nombredemascota']) ?></h3>
             <p><?= htmlspecialchars($m['especie']) ?> - <?= htmlspecialchars($m['raza']) ?></p>
             <p><strong>Zona:</strong> <?= htmlspecialchars($m['ubicacion']) ?></p>
-            <a href="detalle-mascota.php?id=<?= $m['id'] ?>" class="boton-contorno">Ver más</a>
+            <a href="detalle-mascota.php?id=<?= $m['id_mascota'] ?>" class="boton-contorno">Ver más</a>
           </div>
         </div>
       </div>

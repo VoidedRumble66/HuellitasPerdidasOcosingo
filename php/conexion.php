@@ -1,8 +1,8 @@
 <?php
 // conexión real a MySQL
 $host = 'localhost';
-$user = 'root';
-$pass = '';
+$user = 'usuario'; // Cambia por tu usuario de MySQL
+$pass = 'tu_contrasena';
 $db   = 'HuellitasPerdidas';
 $conexion = new mysqli($host, $user, $pass, $db);
 if ($conexion->connect_errno) {
