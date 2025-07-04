@@ -39,10 +39,10 @@ include 'php/menu.php';
         <label for="confirmar" class="form-label">Confirmar contraseña</label>
         <input type="password" name="confirmar" id="confirmar" required class="form-control">
       </div>
-=======
         <label for="password" class="form-label">Contraseña</label>
         <input type="password" name="password" id="password" required class="form-control">
       </div>
+
 
       <button type="submit" class="btn btn-primary">Registrarse</button>
     </form>

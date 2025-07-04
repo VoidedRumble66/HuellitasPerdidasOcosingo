@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $_SESSION['flash'] = 'Error al registrar';
             }
-=======
+
     $password = password_hash($_POST['password'] ?? '', PASSWORD_DEFAULT);
 
     if (!$conexion->connect_errno) {
@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } else {
             $_SESSION['flash'] = 'Error al registrar';
+
         }
     } else {
         $_SESSION['flash'] = 'Error de conexión';
