@@ -10,8 +10,8 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <!-- Tu estilo único -->
-  <link rel="stylesheet" href="../css/estilo.css">
+  <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>

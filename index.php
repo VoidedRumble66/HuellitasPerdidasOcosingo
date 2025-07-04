@@ -94,10 +94,6 @@ include 'php/menu.php';
 <!-- Script para mostrar modal y controlar slider -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Iniciar modal de login
-    var modalLogin = new bootstrap.Modal(document.getElementById('modalLogin'));
-    modalLogin.show();
-
     // Slider a componer
     let indice = 0;
     const diapositivas = Array.from(document.querySelectorAll('.diapositiva'));

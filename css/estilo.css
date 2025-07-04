@@ -483,3 +483,20 @@ select:focus {
   display: block;
 }
 
+/* ============================
+   FORMULARIOS DE AUTENTICACIÓN
+=============================== */
+.seccion-login, .seccion-registro {
+  padding: 60px 0;
+  background-color: #fff;
+}
+
+.formulario-login, .formulario-registro {
+  max-width: 500px;
+  margin: auto;
+  padding: 30px;
+  background-color: #F9F9F9;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+
