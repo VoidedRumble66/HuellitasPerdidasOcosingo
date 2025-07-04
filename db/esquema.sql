@@ -9,6 +9,8 @@ CREATE TABLE usuario (
   password VARCHAR(255) NOT NULL,
   nombre VARCHAR(50) NOT NULL,
   apellido VARCHAR(60),
+  telefono VARCHAR(20),
+
   fechanacimiento DATE,
   id_tipodeusuario INT
 );
@@ -56,6 +58,7 @@ CREATE TABLE comentario (
   id_usuario INT,
   FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 
+
 CREATE TABLE usuarios (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(100) NOT NULL,
@@ -76,5 +79,6 @@ CREATE TABLE mascota (
   foto TEXT,
   id_usuario INT,
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+
 
 );

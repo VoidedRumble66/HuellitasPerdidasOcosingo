@@ -40,9 +40,11 @@ include 'php/menu.php';
         <input type="password" name="confirmar" id="confirmar" required class="form-control">
       </div>
 
+
         <label for="password" class="form-label">Contraseña</label>
         <input type="password" name="password" id="password" required class="form-control">
       </div>
+
 
 
 

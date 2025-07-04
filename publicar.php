@@ -6,8 +6,11 @@ if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
 $tituloPagina = 'Publicar Mascota';
+require 'php/conexion.php';
 include 'php/head.php';   // Carga <head> y apertura de <body>
 include 'php/menu.php';   // Carga el menú de navegación
+$especies = $conexion->query("SELECT id_especie, nombre FROM especie")->fetch_all(MYSQLI_ASSOC);
+$razas = $conexion->query("SELECT id_raza, nombre FROM raza")->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!-- SECCIÓN: PUBLICAR MASCOTA -->
@@ -49,13 +52,18 @@ include 'php/menu.php';   // Carga el menú de navegación
         <div class="col-md-4 grupo-formulario">
           <label for="especie">Especie:</label>
           <select id="especie" name="especie" class="entrada-texto">
-            <option value="perro">Perro</option>
-            <option value="gato">Gato</option>
-            <option value="otro">Otro</option>
+            <?php foreach ($especies as $e): ?>
+              <option value="<?= $e['id_especie'] ?>"><?= htmlspecialchars($e['nombre']) ?></option>
+            <?php endforeach; ?>
           </select>
         </div>
         <div class="col-md-4 grupo-formulario">
           <label for="raza">Raza:</label>
+          <select id="raza" name="raza" class="entrada-texto">
+            <?php foreach ($razas as $r): ?>
+              <option value="<?= $r['id_raza'] ?>"><?= htmlspecialchars($r['nombre']) ?></option>
+            <?php endforeach; ?>
+          </select>
           <input type="text" id="raza" name="raza" class="entrada-texto">
         </div>
         <div class="col-md-4 grupo-formulario">

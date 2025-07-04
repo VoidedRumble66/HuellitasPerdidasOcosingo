@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$conexion->connect_errno) {
         $c = $conexion->prepare('SELECT id_usuario FROM usuario WHERE correo = ?');
 
+
         $c = $conexion->prepare('SELECT id FROM usuarios WHERE email = ?');
 
         $c->bind_param('s', $email);
@@ -30,7 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $stmt = $conexion->prepare('INSERT INTO usuario(nombre, correo, telefono, fechanacimiento, password) VALUES (?,?,?,?,?)');
 
+
             $stmt = $conexion->prepare('INSERT INTO usuarios(nombre, email, telefono, nacimiento, password) VALUES (?,?,?,?,?)');
+
             $stmt->bind_param('sssss', $nombre, $email, $telefono, $nacimiento, $password);
             if ($stmt->execute()) {
                 $_SESSION['usuario_id'] = $stmt->insert_id;
@@ -39,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $_SESSION['flash'] = 'Error al registrar';
             }
+
 
 
     $password = password_hash($_POST['password'] ?? '', PASSWORD_DEFAULT);
@@ -52,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } else {
             $_SESSION['flash'] = 'Error al registrar';
+
 
 
         }
