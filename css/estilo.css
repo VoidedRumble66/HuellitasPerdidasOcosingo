@@ -60,6 +60,21 @@ body {
   color: #F9B8C3;
 }
 
+.enlace-navegacion.activo {
+  position: relative;
+}
+
+.enlace-navegacion.activo::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+}
+
 /* ============================
    DESLIZADOR (SLIDER)
 =============================== */
@@ -481,5 +496,32 @@ select:focus {
   max-height: 100%;
   object-fit: contain;     /* Ajusta entera dentro del contenedor */
   display: block;
+}
+
+/* ============================
+   FORMULARIOS DE AUTENTICACIÓN
+=============================== */
+.seccion-login, .seccion-registro {
+  padding: 60px 0;
+  background-color: #fff;
+}
+
+.formulario-login, .formulario-registro {
+  max-width: 500px;
+  margin: auto;
+  padding: 30px;
+  background-color: #F9F9F9;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+
+/* Sección cómo funciona */
+.circulo {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  display: inline-block;
+  font-weight: bold;
 }
 

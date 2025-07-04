@@ -8,5 +8,8 @@
     <img src="/img/logo-utselva.png" alt="Logo UTSelva" class="img-utselva mt-2">
   </div>
 </footer>
+<!-- Scripts de Bootstrap guardados localmente -->
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

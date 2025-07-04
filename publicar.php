@@ -1,8 +1,15 @@
 <?php
 // publicar.php — formulario para reportar mascota extraviada
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: login.php');
+    exit;
+}
 $tituloPagina = 'Publicar Mascota';
 include 'php/head.php';   // Carga <head> y apertura de <body>
 include 'php/menu.php';   // Carga el menú de navegación
+$especies = $conexion->query("SELECT id_especie, nombre FROM especie")->fetch_all(MYSQLI_ASSOC);
+$razas = $conexion->query("SELECT id_raza, nombre FROM raza")->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!-- SECCIÓN: PUBLICAR MASCOTA -->
@@ -13,7 +20,7 @@ include 'php/menu.php';   // Carga el menú de navegación
 
     <!-- Formulario de publicación -->
     <form class="formulario-publicar animar-entrada"
-          action="#" method="post" enctype="multipart/form-data">
+          action="php/procesar_publicar.php" method="post" enctype="multipart/form-data">
 
       <h3>Datos del responsable</h3>
       <div class="row">
@@ -44,15 +51,22 @@ include 'php/menu.php';   // Carga el menú de navegación
         <div class="col-md-4 grupo-formulario">
           <label for="especie">Especie:</label>
           <select id="especie" name="especie" class="entrada-texto">
-            <option value="perro">Perro</option>
-            <option value="gato">Gato</option>
-            <option value="otro">Otro</option>
+            <?php foreach ($especies as $e): ?>
+              <option value="<?= $e['id_especie'] ?>"><?= htmlspecialchars($e['nombre']) ?></option>
+            <?php endforeach; ?>
           </select>
         </div>
         <div class="col-md-4 grupo-formulario">
-          <label for="color">Color predominante:</label>
-          <input type="text" id="color" name="color"
-                 class="entrada-texto">
+          <label for="raza">Raza:</label>
+          <select id="raza" name="raza" class="entrada-texto">
+            <?php foreach ($razas as $r): ?>
+              <option value="<?= $r['id_raza'] ?>"><?= htmlspecialchars($r['nombre']) ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+        <div class="col-md-4 grupo-formulario">
+          <label for="ubicacion">Zona o colonia:</label>
+          <input type="text" id="ubicacion" name="ubicacion" class="entrada-texto" required>
         </div>
         <div class="col-md-12 grupo-formulario">
           <label for="foto">Foto de la mascota:</label>
