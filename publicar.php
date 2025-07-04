@@ -1,5 +1,10 @@
 <?php
 // publicar.php — formulario para reportar mascota extraviada
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: login.php');
+    exit;
+}
 $tituloPagina = 'Publicar Mascota';
 include 'php/head.php';   // Carga <head> y apertura de <body>
 include 'php/menu.php';   // Carga el menú de navegación
@@ -13,7 +18,7 @@ include 'php/menu.php';   // Carga el menú de navegación
 
     <!-- Formulario de publicación -->
     <form class="formulario-publicar animar-entrada"
-          action="#" method="post" enctype="multipart/form-data">
+          action="php/procesar_publicar.php" method="post" enctype="multipart/form-data">
 
       <h3>Datos del responsable</h3>
       <div class="row">
@@ -50,9 +55,12 @@ include 'php/menu.php';   // Carga el menú de navegación
           </select>
         </div>
         <div class="col-md-4 grupo-formulario">
-          <label for="color">Color predominante:</label>
-          <input type="text" id="color" name="color"
-                 class="entrada-texto">
+          <label for="raza">Raza:</label>
+          <input type="text" id="raza" name="raza" class="entrada-texto">
+        </div>
+        <div class="col-md-4 grupo-formulario">
+          <label for="ubicacion">Zona o colonia:</label>
+          <input type="text" id="ubicacion" name="ubicacion" class="entrada-texto" required>
         </div>
         <div class="col-md-12 grupo-formulario">
           <label for="foto">Foto de la mascota:</label>
