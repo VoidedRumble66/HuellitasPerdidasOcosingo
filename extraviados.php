@@ -1,77 +1,40 @@
 <?php
-// extraviados.php — listado de mascotas extraviadas
+// extraviados.php — listado de mascotas extraviadas desde la base de datos
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: login.php');
+    exit;
+}
 $tituloPagina = 'Extraviados';
+require 'php/conexion.php';
 include 'php/head.php';
 include 'php/menu.php';
+
+$resultado = $conexion->query("SELECT id, nombredemascota, especie, raza, ubicacion, foto FROM mascota ORDER BY fechadeextravio DESC");
+$mascotas = $resultado ? $resultado->fetch_all(MYSQLI_ASSOC) : [];
 ?>
 
 <section class="seccion-mascotas-perdidas">
   <div class="contenedor">
     <h2 class="titulo-seccion animar-entrada">Mascotas Extraviadas</h2>
-
-    <!-- Botón para crear un nuevo reporte -->
-    <div class="text-end mb-4">
-      <a href="crear-extraviado.php" class="boton">+ Nuevo reporte</a>
-    </div>
-
     <div class="row contenedor-tarjetas">
-      <!-- Tarjeta 1 -->
+      <?php foreach ($mascotas as $m): ?>
       <div class="col-md-4 mb-4">
         <div class="tarjeta-mascota animar-entrada">
           <div class="contenedor-imagen-mascota">
-            <img src="img/perro1.jpg" alt="Rocky" class="imagen-mascota">
+            <img src="img/<?= htmlspecialchars($m['foto']) ?>" alt="<?= htmlspecialchars($m['nombredemascota']) ?>" class="imagen-mascota">
           </div>
           <div class="info-mascota">
-            <h3 class="nombre-mascota">Rocky</h3>
-            <p><strong>Especie:</strong> Perro</p>
-            <p><strong>Color:</strong> Negro</p>
-            <p><strong>Zona:</strong> Colonia Centro</p>
-            <!-- Ver detalle -->
-            <a href="detalle-mascota.php?id=1" class="boton-contorno">Ver más</a>
-            <!-- Editar registro -->
-            <a href="editar-extraviado.php?id=1" class="boton-contorno ms-2">Editar</a>
+            <h3 class="nombre-mascota"><?= htmlspecialchars($m['nombredemascota']) ?></h3>
+            <p><?= htmlspecialchars($m['especie']) ?> - <?= htmlspecialchars($m['raza']) ?></p>
+            <p><strong>Zona:</strong> <?= htmlspecialchars($m['ubicacion']) ?></p>
+            <a href="detalle-mascota.php?id=<?= $m['id'] ?>" class="boton-contorno">Ver más</a>
           </div>
         </div>
       </div>
-
-      <!-- Tarjeta 2 -->
-      <div class="col-md-4 mb-4">
-        <div class="tarjeta-mascota animar-entrada">
-          <div class="contenedor-imagen-mascota">
-            <img src="img/gato1.jpg" alt="Michi" class="imagen-mascota">
-          </div>
-          <div class="info-mascota">
-            <h3 class="nombre-mascota">Michi</h3>
-            <p><strong>Especie:</strong> Gato</p>
-            <p><strong>Color:</strong> Gris</p>
-            <p><strong>Zona:</strong> Barrio San Antonio</p>
-            <a href="detalle-mascota.php?id=2" class="boton-contorno">Ver más</a>
-            <a href="editar-extraviado.php?id=2" class="boton-contorno ms-2">Editar</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tarjeta 3 -->
-      <div class="col-md-4 mb-4">
-        <div class="tarjeta-mascota animar-entrada">
-          <div class="contenedor-imagen-mascota">
-            <img src="img/perro2.jpg" alt="Toby" class="imagen-mascota">
-          </div>
-          <div class="info-mascota">
-            <h3 class="nombre-mascota">Toby</h3>
-            <p><strong>Especie:</strong> Perro</p>
-            <p><strong>Color:</strong> Marrón</p>
-            <p><strong>Zona:</strong> Cerca del mercado</p>
-            <a href="detalle-mascota.php?id=3" class="boton-contorno">Ver más</a>
-            <a href="editar-extraviado.php?id=3" class="boton-contorno ms-2">Editar</a>
-          </div>
-        </div>
-      </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>
 
-<?php
-include 'php/footer.php';
-?>
-
+<?php include 'php/footer.php'; ?>
