@@ -7,12 +7,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
 
     if (!$conexion->connect_errno) {
+        $stmt = $conexion->prepare('SELECT id_usuario, password FROM usuario WHERE correo = ?');
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $stmt->bind_result($idUsuario, $hash);
+        if ($stmt->fetch() && password_verify($password, $hash)) {
+            $_SESSION['usuario_id'] = $idUsuario;
+
         $stmt = $conexion->prepare('SELECT id, password FROM usuarios WHERE email = ?');
         $stmt->bind_param('s', $email);
         $stmt->execute();
         $stmt->bind_result($id, $hash);
         if ($stmt->fetch() && password_verify($password, $hash)) {
             $_SESSION['usuario_id'] = $id;
+
             header('Location: ../index.php');
             exit;
         }

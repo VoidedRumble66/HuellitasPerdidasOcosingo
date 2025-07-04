@@ -10,7 +10,9 @@ function activo($archivo) {
     return $paginaActual === $archivo ? ' activo' : '';
 }
 
+
 session_start();
+
 
 ?>
 <header class="encabezado">
@@ -27,6 +29,7 @@ session_start();
           <li><a href="php/cerrar_sesion.php" class="enlace-navegacion">Cerrar sesión</a></li>
         <?php else: ?>
           <li><a href="login.php" class="enlace-navegacion<?= activo('login.php'); ?>">Iniciar sesión</a></li>
+
           <li><a href="index.php" class="enlace-navegacion">Inicio</a></li>
           <li><a href="publicar.php" class="enlace-navegacion">Publicar</a></li>
           <li><a href="extraviados.php" class="enlace-navegacion">Extraviados</a></li>
@@ -36,6 +39,7 @@ session_start();
           <li><a href="php/cerrar_sesion.php" class="enlace-navegacion">Cerrar sesión</a></li>
         <?php else: ?>
           <li><a href="login.php" class="enlace-navegacion">Iniciar sesión</a></li>
+
 
         <?php endif; ?>
       </ul>
