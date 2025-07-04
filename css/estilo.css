@@ -1,0 +1,485 @@
+/* ============================
+   FUENTE Y FONDO GENERAL
+=============================== */
+body {
+  font-family: 'Quicksand', sans-serif;
+  background-color: #F9F9F9; /* Blanco humo */
+  margin: 0;
+  padding: 0;
+  color: #333333; /* Texto gris oscuro */
+}
+
+/* ============================
+   CONTENEDOR CENTRAL
+=============================== */
+.contenedor {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ============================
+   ENCABEZADO Y NAVEGACIÓN
+=============================== */
+.encabezado {
+  background-color: #F27F3D; /* Naranja coral */
+  padding: 20px 0;
+  color: white;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.logo span {
+  color: #F9B8C3; /* Rosa suave */
+}
+
+.navegacion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lista-navegacion {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+}
+
+.enlace-navegacion {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.enlace-navegacion:hover {
+  color: #F9B8C3;
+}
+
+/* ============================
+   DESLIZADOR (SLIDER)
+=============================== */
+.deslizador {
+  position: relative;
+  overflow: hidden;
+}
+
+.contenedor-deslizador {
+  position: relative;
+  height: 450px;
+}
+
+.diapositiva {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: fade 1s ease-in-out;
+}
+
+.diapositiva.activa {
+  display: block;
+}
+
+.imagen-deslizador {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(60%);
+}
+
+.texto-deslizador {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  color: white;
+  max-width: 500px;
+}
+
+.texto-deslizador h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.texto-deslizador p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Controles del deslizador */
+.controles-deslizador {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  transform: translateY(-50%);
+}
+
+.controles-deslizador span {
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Animación de aparición del slider */
+@keyframes fade {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
+
+/* ============================
+   SECCIÓN DE INTRODUCCIÓN
+=============================== */
+.introduccion {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.titulo-seccion {
+  font-size: 32px;
+  color: #4CAF50; /* Verde selva */
+  margin-bottom: 20px;
+}
+
+.texto-intro {
+  font-size: 18px;
+  max-width: 800px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+}
+
+.grupo-botones .boton,
+.grupo-botones .boton-contorno {
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+/* ============================
+   BOTONES
+=============================== */
+.boton,
+.boton-contorno {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.boton {
+  background-color: #F27F3D;
+  color: white;
+}
+
+.boton:hover {
+  background-color: #d4662f;
+}
+
+.boton-contorno {
+  border: 2px solid #F27F3D;
+  color: #F27F3D;
+}
+
+.boton-contorno:hover {
+  background-color: #F27F3D;
+  color: white;
+}
+
+/* ============================
+   GALERÍA DESTACADA
+=============================== */
+.galeria {
+  padding: 40px 0;
+}
+
+.contenedor-galeria {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.imagen-galeria {
+  width: 300px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ============================
+   TESTIMONIOS
+=============================== */
+.seccion-testimonios {
+  padding: 60px 0;
+  background-color: #F9B8C3; /* Color suave de fondo de testimonios */
+  text-align: center;
+}
+
+.item-testimonio {
+  margin-bottom: 30px;
+}
+
+.texto-testimonio {
+  font-style: italic;
+  font-size: 18px;
+  color: #444;
+}
+
+.nombre-testimonio {
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+/* ============================
+   SECCIÓN: PUBLICAR MASCOTA
+=============================== */
+.seccion-publicar {
+  background-color: #fff;
+  padding: 60px 0;
+}
+
+.formulario-publicar {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #F9F9F9;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+
+.formulario-publicar h3 {
+  color: #4CAF50;
+  margin-top: 30px;
+  font-size: 20px;
+}
+
+.grupo-formulario {
+  margin-bottom: 20px;
+}
+
+.entrada-texto,
+.entrada-archivo,
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-family: 'Quicksand', sans-serif;
+  transition: border-color 0.3s ease;
+  background-color: white;
+}
+
+.entrada-texto:focus,
+textarea:focus,
+select:focus {
+  border-color: #F27F3D;
+  outline: none;
+}
+
+/* Ocultar placeholder de mapa */
+#map {
+  background-color: #eee;
+  border: 2px dashed #ccc;
+  display: none;
+  height: 300px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+/* ============================
+   SECCIÓN: MASCOTAS EXTRAVIADAS
+=============================== */
+.seccion-mascotas-perdidas {
+  padding: 60px 0;
+  background-color: #fff;
+}
+
+.tarjeta-mascota {
+  background-color: #F9F9F9;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.tarjeta-mascota:hover {
+  transform: translateY(-5px);
+}
+
+.imagen-mascota {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.info-mascota {
+  padding: 20px;
+  text-align: center;
+}
+
+.nombre-mascota {
+  color: #4CAF50;
+  margin-bottom: 10px;
+}
+
+/* ============================
+   SECCIÓN: NOSOTROS
+=============================== */
+.seccion-nosotros {
+  background-color: #fff;
+  padding: 60px 0;
+}
+
+.texto-nosotros {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  font-size: 18px;
+  line-height: 1.6;
+  text-align: center;
+  color: #333;
+}
+
+/* ============================
+   SECCIÓN: CONTÁCTANOS
+=============================== */
+.seccion-contacto {
+  background-color: #F9F9F9;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.texto-contacto {
+  max-width: 600px;
+  margin: 0 auto 40px;
+  font-size: 18px;
+  color: #555;
+}
+
+.formulario-contacto {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+}
+
+/* ============================
+   GLOBAL: ANIMACIONES
+=============================== */
+.animar-entrada {
+  animation: fadeIn 1.2s ease-in;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Hover suave para botones */
+.boton,
+.boton-contorno {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Efecto hover tarjetas */
+.tarjeta-mascota {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-mascota:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* ============================
+   RESPONSIVO BÁSICO
+=============================== */
+@media (max-width: 768px) {
+  .navegacion {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .lista-navegacion {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .texto-deslizador h2 {
+    font-size: 28px;
+  }
+
+  .texto-deslizador p {
+    font-size: 16px;
+  }
+
+  .imagen-galeria {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+/* ============================
+   PIE DE PÁGINA
+=============================== */
+.footer {
+  background-color: #4CAF50;   /* Verde selva */
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+}
+/* ============================
+   IMÁGENES UNIFORMES EN TARJETAS
+=============================== */
+.contenedor-imagen-mascota {
+  width: 100%;
+  height: 200px;          /* Altura fija */
+  overflow: hidden;       /* Oculta lo que sobresalga */
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.imagen-mascota {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* Recorta centrado */
+  object-position: center;
+  display: block;
+}
+
+
+/* ============================
+   CONTENEDOR DE IMAGEN EN DETALLE
+=============================== */
+.contenedor-imagen-detalle {
+  width: 100%;
+  height: 350px;           /* Altura fija para uniformidad */
+  display: flex;           /* Flex para centrar */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  background-color: #eee;  /* Fondo tenue si quedan bordes */
+  border-radius: 12px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.imagen-detalle-mascota {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;     /* Ajusta entera dentro del contenedor */
+  display: block;
+}
+
