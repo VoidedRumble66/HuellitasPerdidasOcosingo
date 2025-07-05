@@ -5,19 +5,13 @@ require 'php/conexion.php';
 include 'php/head.php';
 include 'php/menu.php';
 
-
+// --- Consulta correcta con JOINs para especie y raza ---
 $sql = "SELECT m.id_mascota, m.nombredemascota, e.nombre AS especie, r.nombre AS raza, m.foto
         FROM mascota m
         LEFT JOIN especie e ON m.id_especie = e.id_especie
         LEFT JOIN raza r ON m.id_raza = r.id_raza
         ORDER BY m.fechadeextravio DESC LIMIT 4";
 $res = $conexion->query($sql);
-
-
-$res = $conexion->query("SELECT id_mascota, nombredemascota, especie, raza, foto FROM mascota ORDER BY fechadeextravio DESC LIMIT 4");
-
-$res = $conexion->query("SELECT id, nombredemascota, especie, raza, foto FROM mascota ORDER BY fechadeextravio DESC LIMIT 4");
-
 
 $recientes = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
 ?>
@@ -26,13 +20,28 @@ $recientes = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
 <section class="deslizador">
   <div class="contenedor-deslizador">
     <div class="diapositiva activa">
-      <img src="img/slide1.jpg" alt="Imagen" class="imagen-deslizador">
+      <img src="img/slide1.jpg" alt="Imagen 1" class="imagen-deslizador">
+      <div class="texto-deslizador">
+        <h2>Ayudemos a reunir familias</h2>
+        <p>Una plataforma para encontrar y reportar mascotas extraviadas en Ocosingo.</p>
+        <a href="publicar.php" class="boton-slider">Publicar reporte</a>
+      </div>
     </div>
     <div class="diapositiva">
-      <img src="img/slide2.jpg" alt="Imagen" class="imagen-deslizador">
+      <img src="img/slide2.jpg" alt="Imagen 2" class="imagen-deslizador">
+      <div class="texto-deslizador">
+        <h2>Encuentra a tu mejor amigo</h2>
+        <p>Explora los reportes recientes y busca mascotas cerca de ti.</p>
+        <a href="extraviados.php" class="boton-slider">Buscar mascotas</a>
+      </div>
     </div>
     <div class="diapositiva">
-      <img src="img/slide3.jpg" alt="Imagen" class="imagen-deslizador">
+      <img src="img/slide3.jpg" alt="Imagen 3" class="imagen-deslizador">
+      <div class="texto-deslizador">
+        <h2>¡Únete y ayuda!</h2>
+        <p>Comparte reportes y colabora con la comunidad.</p>
+        <a href="registro.php" class="boton-slider">Regístrate</a>
+      </div>
     </div>
   </div>
   <div class="controles-deslizador">
@@ -40,6 +49,7 @@ $recientes = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
     <span class="next">&#10095;</span>
   </div>
 </section>
+
 
 <!-- MASCOTAS RECIENTES -->
 <section class="seccion-mascotas-perdidas">
@@ -56,11 +66,6 @@ $recientes = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
             <h3 class="nombre-mascota"><?= htmlspecialchars($m['nombredemascota']) ?></h3>
             <p><?= htmlspecialchars($m['especie']) ?> - <?= htmlspecialchars($m['raza']) ?></p>
             <a href="detalle-mascota.php?id=<?= $m['id_mascota'] ?>" class="boton-contorno">Ver más</a>
-
-
-            <a href="detalle-mascota.php?id=<?= $m['id'] ?>" class="boton-contorno">Ver más</a>
-
-
           </div>
         </div>
       </div>
@@ -94,29 +99,12 @@ $recientes = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
       </div>
       <div class="col-md-4 mb-3">
         <div class="paso">
-
-
-      </div>
-      <div class="col-md-4 mb-3">
-        <div class="paso">
           <div class="circulo bg-success text-white mb-2">2</div>
           <p>Comparte la información con la comunidad.</p>
         </div>
       </div>
       <div class="col-md-4 mb-3">
         <div class="paso">
-
-
-      </div>
-      <div class="col-md-4 mb-3">
-        <div class="paso">
-          <div class="circulo bg-success text-white mb-2">2</div>
-          <p>Comparte la información con la comunidad.</p>
-        </div>
-      </div>
-      <div class="col-md-4 mb-3">
-        <div class="paso">
-
           <div class="circulo bg-success text-white mb-2">3</div>
           <p>Reúne a la familia con su mascota.</p>
         </div>
@@ -127,7 +115,6 @@ $recientes = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-
     let indice = 0;
     const diapositivas = Array.from(document.querySelectorAll('.diapositiva'));
     const siguiente = document.querySelector('.next');
@@ -145,4 +132,5 @@ $recientes = $res ? $res->fetch_all(MYSQLI_ASSOC) : [];
 </script>
 
 <?php include 'php/footer.php'; ?>
+
 

@@ -27,7 +27,7 @@ CREATE TABLE raza (
   FOREIGN KEY (id_especie) REFERENCES especie(id_especie)
 );
 
-CREATE TABLE mascota (
+CREATE TABLE mascotas (
   id_mascota INT AUTO_INCREMENT PRIMARY KEY,
   id_especie INT,
   nombredemascota VARCHAR(45),
@@ -57,6 +57,7 @@ CREATE TABLE comentario (
   comentario TEXT,
   id_usuario INT,
   FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+);
 
 
 CREATE TABLE usuarios (

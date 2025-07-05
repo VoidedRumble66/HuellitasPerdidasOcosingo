@@ -143,6 +143,25 @@ body {
   cursor: pointer;
 }
 
+.boton-slider {
+  display: inline-block;
+  background: #fc9246;
+  color: #fff;
+  padding: 0.8em 2em;
+  border-radius: 12px;
+  font-size: 1.2em;
+  border: none;
+  text-decoration: none;
+  transition: background 0.2s;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.boton-slider:hover {
+  background: #d46d20;
+}
+
+
+
 /* Animación de aparición del slider */
 @keyframes fade {
   from { opacity: 0.5; }
