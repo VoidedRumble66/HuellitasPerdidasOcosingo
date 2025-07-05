@@ -1,17 +1,12 @@
 <?php
-// detalle-mascota.php — muestra información completa de una mascota
 session_start();
-if (!isset($_SESSION['usuario_id'])) {
-    header('Location: login.php');
-    exit;
-}
-$tituloPagina = 'Detalle de Mascota';
 require 'php/conexion.php';
 include 'php/head.php';
 include 'php/menu.php';
 
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $mascota = null;
+
 if ($id > 0) {
     $stmt = $conexion->prepare('SELECT m.nombredemascota, e.nombre AS especie, r.nombre AS raza, m.descripcion, m.foto, m.ubicacion, m.fechadeextravio, m.id_usuario
                                 FROM mascota m
@@ -53,4 +48,86 @@ if ($id > 0) {
   </div>
 </section>
 <?php endif; ?>
+
+<?php if (isset($_SESSION['usuario_id'])): ?>
+<section class="seccion-comentarios">
+  <div class="contenedor">
+    <h3>Comentarios</h3>
+    <form action="php/procesar_comentario.php" method="POST" class="formulario-comentario">
+      <textarea name="comentario" required placeholder="Escribe un comentario..." rows="3"></textarea>
+      <input type="hidden" name="id_mascota" value="<?= $id ?>">
+      <button type="submit" class="boton">Comentar</button>
+    </form>
+  </div>
+</section>
+<?php endif; ?>
+
+<?php
+// Obtener comentarios principales (que no son respuesta a otro comentario)
+$comentarios = [];
+$stmt = $conexion->prepare("SELECT c.*, u.nombre FROM comentario c
+    JOIN usuario u ON c.id_usuario = u.id_usuario
+    WHERE c.id_mascota = ? AND c.id_responde IS NULL
+    ORDER BY c.fechadelcomentario DESC");
+$stmt->bind_param('i', $id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+
+while($row = $result->fetch_assoc()) {
+    $comentarios[] = $row;
+}
+?>
+
+<section class="seccion-lista-comentarios">
+  <div class="contenedor">
+    <?php foreach ($comentarios as $comentario): ?>
+      <div class="comentario-principal">
+        <strong><?= htmlspecialchars($comentario['nombre']) ?></strong>
+        <span><?= date('d/m/Y H:i', strtotime($comentario['fechadelcomentario'])) ?></span>
+        <p><?= nl2br(htmlspecialchars($comentario['comentario'])) ?></p>
+        <!-- Botones de responder, editar, borrar -->
+        <?php if (isset($_SESSION['usuario_id'])): ?>
+        <form action="php/procesar_comentario.php" method="POST" class="formulario-respuesta" style="display:inline;">
+          <input type="hidden" name="id_mascota" value="<?= $id ?>">
+          <input type="hidden" name="id_responde" value="<?= $comentario['id_comentario'] ?>">
+          <input type="text" name="comentario" placeholder="Responder..." required>
+          <button type="submit" class="boton-contorno">Responder</button>
+        </form>
+        <?php endif; ?>
+
+        <!-- Solo mostrar si es el usuario actual -->
+        <?php if (isset($_SESSION['usuario_id']) && $comentario['id_usuario'] == $_SESSION['usuario_id']): ?>
+          <a href="editar_comentario.php?id=<?= $comentario['id_comentario'] ?>">Editar</a>
+          <a href="borrar_comentario.php?id=<?= $comentario['id_comentario'] ?>&mascota=<?= $id ?>" onclick="return confirm('¿Seguro de borrar?')">Borrar</a>
+        <?php endif; ?>
+
+        <!-- Mostrar respuestas -->
+        <?php
+        $stmt2 = $conexion->prepare("SELECT c.*, u.nombre FROM comentario c
+            JOIN usuario u ON c.id_usuario = u.id_usuario
+            WHERE c.id_responde = ?
+            ORDER BY c.fechadelcomentario ASC");
+        $stmt2->bind_param('i', $comentario['id_comentario']);
+        $stmt2->execute();
+        $respuestas = $stmt2->get_result();
+        ?>
+        <div class="respuestas">
+          <?php while ($respuesta = $respuestas->fetch_assoc()): ?>
+            <div class="comentario-respuesta">
+              <strong><?= htmlspecialchars($respuesta['nombre']) ?></strong>
+              <span><?= date('d/m/Y H:i', strtotime($respuesta['fechadelcomentario'])) ?></span>
+              <p><?= nl2br(htmlspecialchars($respuesta['comentario'])) ?></p>
+              <?php if (isset($_SESSION['usuario_id']) && $respuesta['id_usuario'] == $_SESSION['usuario_id']): ?>
+                <a href="editar_comentario.php?id=<?= $respuesta['id_comentario'] ?>">Editar</a>
+                <a href="borrar_comentario.php?id=<?= $respuesta['id_comentario'] ?>&mascota=<?= $id ?>" onclick="return confirm('¿Seguro de borrar?')">Borrar</a>
+              <?php endif; ?>
+            </div>
+          <?php endwhile; ?>
+        </div>
+      </div>
+    <?php endforeach; ?>
+  </div>
+</section>
+
 <?php include 'php/footer.php'; ?>

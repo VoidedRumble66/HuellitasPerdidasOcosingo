@@ -3,7 +3,6 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
 $paginaActual = basename($_SERVER['PHP_SELF']);
 function activo($archivo) {
     global $paginaActual;
@@ -19,19 +18,42 @@ function activo($archivo) {
           <li><a href="index.php" class="enlace-navegacion<?= activo('index.php'); ?>">Inicio</a></li>
           <li><a href="extraviados.php" class="enlace-navegacion<?= activo('extraviados.php'); ?>">Mascotas extraviadas</a></li>
           <li><a href="publicar.php" class="enlace-navegacion<?= activo('publicar.php'); ?>">Reportar</a></li>
-          <li><a href="contacto.php" class="enlace-navegacion<?= activo('contacto.php'); ?>">Contacto</a></li>
-          <li><a href="nosotros.php" class="enlace-navegacion<?= activo('nosotros.php'); ?>">Consejos</a></li>
-          <li><a href="php/cerrar_sesion.php" class="enlace-navegacion">Cerrar sesión</a></li>
+          <!-- MENÚ PERFIL DESPLEGABLE -->
+          <li class="submenu-perfil">
+            <a href="#" class="enlace-navegacion<?= activo('perfil.php'); ?>" id="perfilMenuBtn">
+              Mi perfil <span style="font-size:1em;">▼</span>
+            </a>
+            <ul class="menu-desplegable" id="perfilDropdown">
+              <li><a href="perfil.php">Ver perfil</a></li>
+              <li><a href="php/cerrar_sesion.php">Cerrar sesión</a></li>
+              <li><a href="contacto.php">Contáctanos</a></li>
+              <li><a href="nosotros.php">Nosotros</a></li>
+            </ul>
+          </li>
         <?php else: ?>
           <li><a href="index.php" class="enlace-navegacion<?= activo('index.php'); ?>">Inicio</a></li>
-          <li><a href="extraviados.php" class="enlace-navegacion<?= activo('extraviados.php'); ?>">Extraviados</a></li>
-          <li><a href="publicar.php" class="enlace-navegacion<?= activo('publicar.php'); ?>">Publicar</a></li>
-          <li><a href="contacto.php" class="enlace-navegacion<?= activo('contacto.php'); ?>">Contáctanos</a></li>
-          <li><a href="nosotros.php" class="enlace-navegacion<?= activo('nosotros.php'); ?>">Nosotros</a></li>
           <li><a href="login.php" class="enlace-navegacion<?= activo('login.php'); ?>">Iniciar sesión</a></li>
         <?php endif; ?>
       </ul>
     </nav>
   </div>
-</header>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const perfilBtn = document.getElementById('perfilMenuBtn');
+      const dropdown = document.getElementById('perfilDropdown');
+      if (perfilBtn && dropdown) {
+        perfilBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          dropdown.classList.toggle('visible');
+        });
+        document.addEventListener('click', function(e) {
+          if (!perfilBtn.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('visible');
+          }
+        });
+      }
+    });
+</script>
+
+</header>

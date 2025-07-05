@@ -39,6 +39,36 @@ body {
 /* ============================
    ENCABEZADO Y NAVEGACIÓN
 =============================== */
+.menu-desplegable {
+  display: none;
+  position: absolute;
+  background: #fff;
+  min-width: 170px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+  border-radius: 8px;
+  right: 0;
+  z-index: 100;
+  padding: 8px 0;
+  margin-top: 8px;
+  list-style: none;
+}
+.menu-desplegable.visible { display: block; }
+.menu-desplegable li a {
+  display: block;
+  padding: 10px 20px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.menu-desplegable li a:hover {
+  background: #f2f2f2;
+}
+.submenu-perfil {
+  position: relative;
+}
+
+
 .encabezado {
   background-color: var(--naranja-principal);
   padding: 20px 0;
@@ -659,3 +689,273 @@ select:focus {
   width: 100%;
   cursor: pointer;
 }
+
+/* ============================
+   COMENTARIOS EN DETALLE MASCOTA
+=============================== */
+.seccion-comentarios, .seccion-lista-comentarios {
+  margin-top: 40px;
+  padding: 0 0 40px 0;
+  background: var(--fondo-claro);
+}
+
+.seccion-comentarios h3,
+.seccion-lista-comentarios h3 {
+  color: var(--naranja-principal);
+  font-size: 2em;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+/* Formulario de nuevo comentario */
+.formulario-comentario, .formulario-respuesta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--fondo-tarjeta);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-bottom: 26px;
+}
+
+.formulario-comentario textarea,
+.formulario-respuesta input[type="text"] {
+  border: 2px solid var(--naranja-acento);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1em;
+  font-family: inherit;
+  resize: vertical;
+  background: #fff;
+  transition: border 0.2s;
+}
+.formulario-comentario textarea:focus,
+.formulario-respuesta input[type="text"]:focus {
+  border-color: var(--naranja-principal);
+  outline: none;
+}
+
+/* Botón comentar y responder */
+.formulario-comentario .boton,
+.formulario-respuesta .boton-contorno {
+  width: 160px;
+  align-self: flex-end;
+  margin-top: 5px;
+}
+
+.seccion-lista-comentarios .comentario-principal {
+  background: var(--fondo-tarjeta);
+  border-left: 6px solid var(--naranja-principal);
+  border-radius: 14px;
+  margin-bottom: 22px;
+  padding: 18px 24px 12px 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  position: relative;
+  transition: box-shadow 0.2s;
+}
+
+.seccion-lista-comentarios .comentario-principal:hover {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+}
+
+/* Encabezado de comentario */
+.comentario-principal strong {
+  color: var(--naranja-principal);
+  font-size: 1.12em;
+  margin-right: 10px;
+}
+
+.comentario-principal span {
+  color: var(--gris-disabled-text);
+  font-size: 0.98em;
+}
+
+/* Texto del comentario */
+.comentario-principal p {
+  margin: 10px 0 0 0;
+  color: var(--gris-medio);
+  font-size: 1.08em;
+  white-space: pre-line;
+}
+
+/* Botones de acción (editar, borrar) */
+.comentario-principal a,
+.comentario-respuesta a {
+  color: var(--naranja-principal);
+  text-decoration: underline;
+  font-size: 0.97em;
+  margin-left: 8px;
+  transition: color 0.2s;
+}
+.comentario-principal a:hover,
+.comentario-respuesta a:hover {
+  color: var(--naranja-hover);
+  text-decoration: none;
+}
+
+/* Caja de respuestas */
+.respuestas {
+  margin-left: 32px;
+  margin-top: 12px;
+  border-left: 3px solid var(--naranja-acento);
+  padding-left: 14px;
+}
+
+.comentario-respuesta {
+  margin-bottom: 10px;
+  padding: 10px 16px 10px 10px;
+  background: #fff;
+  border-radius: 8px;
+  border-left: 4px solid var(--verde-principal);
+  box-shadow: 0 2px 7px rgba(0,0,0,0.04);
+  font-size: 0.98em;
+  position: relative;
+}
+
+.comentario-respuesta strong {
+  color: var(--verde-principal);
+  font-size: 1em;
+  margin-right: 6px;
+}
+.comentario-respuesta span {
+  color: var(--gris-disabled-text);
+  font-size: 0.93em;
+}
+.comentario-respuesta p {
+  margin: 8px 0 0 0;
+  color: var(--gris-medio);
+  white-space: pre-line;
+}
+
+@media (max-width: 650px) {
+  .seccion-comentarios,
+  .seccion-lista-comentarios {
+    padding: 0 2vw 30px 2vw;
+  }
+  .comentario-principal, .comentario-respuesta {
+    padding: 14px 7vw 10px 7vw;
+  }
+  .respuestas {
+    margin-left: 0;
+    padding-left: 7vw;
+  }
+}
+/* PERFIL USUARIO */
+.seccion-perfil {
+  background: var(--fondo-claro);
+  padding: 60px 0 40px 0;
+}
+.perfil-contenedor {
+  max-width: 900px;
+  margin: auto;
+}
+.perfil-tarjeta {
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+  background: var(--fondo-tarjeta);
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  padding: 32px 28px 18px 28px;
+  margin-bottom: 34px;
+}
+.perfil-datos {
+  min-width: 210px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.perfil-usuario {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+.perfil-avatar {
+  width: 54px; height: 54px;
+  background: var(--naranja-acento);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center; justify-content: center;
+  font-size: 2em;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.perfil-nombre {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: var(--gris-oscuro);
+  margin-bottom: 2px;
+}
+.perfil-id {
+  font-size: 0.99em;
+  color: var(--gris-disabled-text);
+}
+.perfil-info-personal {
+  flex: 2;
+  padding-left: 12px;
+}
+.info-personal-campo {
+  margin-bottom: 8px;
+  font-size: 1.04em;
+}
+.preferencias-noti {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.preferencias-noti li {
+  margin-bottom: 5px;
+  font-size: 0.97em;
+}
+.mt-2 { margin-top: 10px; }
+.mt-3 { margin-top: 18px; }
+.mt-5 { margin-top: 35px; }
+.mb-3 { margin-bottom: 16px; }
+.mb-4 { margin-bottom: 24px; }
+.tabla-mascotas {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+.tabla-mascotas th, .tabla-mascotas td {
+  padding: 12px 10px;
+  text-align: center;
+  font-size: 1em;
+}
+.tabla-mascotas thead {
+  background: var(--naranja-principal);
+  color: #fff;
+}
+.tabla-mascotas tbody tr:nth-child(even) {
+  background: var(--fondo-tarjeta);
+}
+.btn-tabla {
+  font-size: 0.95em;
+  padding: 6px 14px;
+  margin: 2px 3px;
+}
+.estado-extraviado {
+  background: var(--naranja-principal);
+  color: #fff;
+  padding: 3px 12px;
+  border-radius: 8px;
+}
+.estado-encontrado {
+  background: var(--verde-principal);
+  color: #fff;
+  padding: 3px 12px;
+  border-radius: 8px;
+}
+@media (max-width: 900px) {
+  .perfil-tarjeta { flex-direction: column; }
+  .perfil-info-personal { padding-left: 0; }
+}
+
