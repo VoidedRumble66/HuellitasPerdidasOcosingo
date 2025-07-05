@@ -1,12 +1,30 @@
+:root {
+  --naranja-principal: #E65100;     /* Naranja oscuro accesible */
+  --naranja-acento:    #FFB74D;     /* Naranja pastel/acento */
+  --naranja-hover:     #a14200;     /* Naranja oscuro hover */
+  --verde-principal:   #388E3C;     /* Verde accesible */
+  --verde-hover:       #236023;
+  --fondo-claro:       #FFFFFF;     /* Blanco puro */
+  --fondo-tarjeta:     #F5F5F5;     /* Gris claro para tarjetas/formularios */
+  --gris-oscuro:       #222222;     /* Texto principal */
+  --gris-claro:        #333;
+  --gris-medio:        #444;
+  --gris-input:        #ccc;
+  --gris-input2:       #ddd;
+  --gris-placeholder:  #eee;
+  --gris-disabled:     #f3f3f3;
+  --gris-disabled-text:#999;
+}
+
 /* ============================
    FUENTE Y FONDO GENERAL
 =============================== */
 body {
   font-family: 'Quicksand', sans-serif;
-  background-color: #F9F9F9; /* Blanco humo */
+  background-color: var(--fondo-claro); /* Blanco puro */
   margin: 0;
   padding: 0;
-  color: #333333; /* Texto gris oscuro */
+  color: var(--gris-oscuro); /* Gris muy oscuro, máximo contraste */
 }
 
 /* ============================
@@ -22,9 +40,9 @@ body {
    ENCABEZADO Y NAVEGACIÓN
 =============================== */
 .encabezado {
-  background-color: #F27F3D; /* Naranja coral */
+  background-color: var(--naranja-principal);
   padding: 20px 0;
-  color: white;
+  color: #FFF;
 }
 
 .logo {
@@ -33,7 +51,7 @@ body {
 }
 
 .logo span {
-  color: #F9B8C3; /* Rosa suave */
+  color: var(--naranja-acento);
 }
 
 .navegacion {
@@ -51,19 +69,18 @@ body {
 
 .enlace-navegacion {
   text-decoration: none;
-  color: white;
+  color: #FFF;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .enlace-navegacion:hover {
-  color: #F9B8C3;
+  color: var(--naranja-acento);
 }
 
 .enlace-navegacion.activo {
   position: relative;
 }
-
 .enlace-navegacion.activo::after {
   content: '';
   position: absolute;
@@ -112,7 +129,7 @@ body {
   top: 50%;
   left: 10%;
   transform: translateY(-50%);
-  color: white;
+  color: #FFF;
   max-width: 500px;
 }
 
@@ -139,14 +156,14 @@ body {
 
 .controles-deslizador span {
   font-size: 40px;
-  color: white;
+  color: #FFF;
   cursor: pointer;
 }
 
 .boton-slider {
   display: inline-block;
-  background: #fc9246;
-  color: #fff;
+  background: var(--naranja-principal);
+  color: #FFF;
   padding: 0.8em 2em;
   border-radius: 12px;
   font-size: 1.2em;
@@ -157,9 +174,8 @@ body {
   margin-top: 10px;
 }
 .boton-slider:hover {
-  background: #d46d20;
+  background: var(--naranja-hover);
 }
-
 
 /* Animación de aparición del slider */
 @keyframes fade {
@@ -177,7 +193,7 @@ body {
 
 .titulo-seccion {
   font-size: 32px;
-  color: #4CAF50; /* Verde selva */
+  color: var(--naranja-principal);
   margin-bottom: 20px;
 }
 
@@ -209,22 +225,35 @@ body {
 }
 
 .boton {
-  background-color: #F27F3D;
-  color: white;
+  background-color: var(--naranja-principal);
+  color: #FFF;
 }
 
 .boton:hover {
-  background-color: #d4662f;
+  background-color: var(--naranja-hover);
 }
 
 .boton-contorno {
-  border: 2px solid #F27F3D;
-  color: #F27F3D;
+  border: 2px solid var(--naranja-principal);
+  color: var(--naranja-principal);
+  background: #FFF;
 }
 
 .boton-contorno:hover {
-  background-color: #F27F3D;
-  color: white;
+  background-color: var(--naranja-principal);
+  color: #FFF;
+}
+
+/* ============================
+   BOTÓN SECUNDARIO (VERDE)
+=============================== */
+.boton-secundario {
+  background-color: var(--verde-principal);
+  color: #FFF;
+}
+
+.boton-secundario:hover {
+  background-color: var(--verde-hover);
 }
 
 /* ============================
@@ -254,7 +283,7 @@ body {
 =============================== */
 .seccion-testimonios {
   padding: 60px 0;
-  background-color: #F9B8C3; /* Color suave de fondo de testimonios */
+  background-color: var(--naranja-acento);
   text-align: center;
 }
 
@@ -265,12 +294,12 @@ body {
 .texto-testimonio {
   font-style: italic;
   font-size: 18px;
-  color: #444;
+  color: var(--gris-medio);
 }
 
 .nombre-testimonio {
   font-weight: bold;
-  color: #4CAF50;
+  color: var(--verde-principal);
 }
 
 /* ============================
@@ -284,14 +313,14 @@ body {
 .formulario-publicar {
   max-width: 800px;
   margin: 0 auto;
-  background-color: #F9F9F9;
+  background-color: var(--fondo-tarjeta);
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0,0,0,0.05);
 }
 
 .formulario-publicar h3 {
-  color: #4CAF50;
+  color: var(--verde-principal);
   margin-top: 30px;
   font-size: 20px;
 }
@@ -307,7 +336,7 @@ select {
   width: 100%;
   padding: 12px;
   font-size: 16px;
-  border: 2px solid #ddd;
+  border: 2px solid var(--gris-input2);
   border-radius: 8px;
   font-family: 'Quicksand', sans-serif;
   transition: border-color 0.3s ease;
@@ -317,14 +346,14 @@ select {
 .entrada-texto:focus,
 textarea:focus,
 select:focus {
-  border-color: #F27F3D;
+  border-color: var(--naranja-principal);
   outline: none;
 }
 
 /* Ocultar placeholder de mapa */
 #map {
-  background-color: #eee;
-  border: 2px dashed #ccc;
+  background-color: var(--gris-placeholder);
+  border: 2px dashed var(--gris-input);
   display: none;
   height: 300px;
   margin-top: 10px;
@@ -340,7 +369,7 @@ select:focus {
 }
 
 .tarjeta-mascota {
-  background-color: #F9F9F9;
+  background-color: var(--fondo-tarjeta);
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0,0,0,0.05);
   overflow: hidden;
@@ -363,7 +392,7 @@ select:focus {
 }
 
 .nombre-mascota {
-  color: #4CAF50;
+  color: var(--verde-principal);
   margin-bottom: 10px;
 }
 
@@ -381,14 +410,14 @@ select:focus {
   font-size: 18px;
   line-height: 1.6;
   text-align: center;
-  color: #333;
+  color: var(--gris-claro);
 }
 
 /* ============================
    SECCIÓN: CONTÁCTANOS
 =============================== */
 .seccion-contacto {
-  background-color: #F9F9F9;
+  background-color: var(--fondo-tarjeta);
   padding: 60px 0;
   text-align: center;
 }
@@ -427,11 +456,9 @@ select:focus {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Efecto hover tarjetas */
 .tarjeta-mascota {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .tarjeta-mascota:hover {
   transform: translateY(-8px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
@@ -445,42 +472,33 @@ select:focus {
     flex-direction: column;
     align-items: flex-start;
   }
-
   .lista-navegacion {
     flex-direction: column;
     gap: 10px;
   }
-
-  .texto-deslizador h2 {
-    font-size: 28px;
-  }
-
-  .texto-deslizador p {
-    font-size: 16px;
-  }
-
-  .imagen-galeria {
-    width: 100%;
-    max-width: 320px;
-  }
+  .texto-deslizador h2 { font-size: 28px; }
+  .texto-deslizador p { font-size: 16px; }
+  .imagen-galeria { width: 100%; max-width: 320px; }
 }
+
 /* ============================
    PIE DE PÁGINA
 =============================== */
 .footer {
-  background-color: #4CAF50;   /* Verde selva */
+  background-color: var(--verde-principal);
   color: white;
   text-align: center;
   padding: 20px 0;
   margin-top: 40px;
 }
+
 /* ============================
    IMÁGENES UNIFORMES EN TARJETAS
 =============================== */
 .contenedor-imagen-mascota {
   width: 100%;
-  height: 200px;          /* Altura fija */
-  overflow: hidden;       /* Oculta lo que sobresalga */
+  height: 200px; /* Altura fija */
+  overflow: hidden;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
 }
@@ -488,22 +506,21 @@ select:focus {
 .imagen-mascota {
   width: 100%;
   height: 100%;
-  object-fit: cover;      /* Recorta centrado */
+  object-fit: cover;
   object-position: center;
   display: block;
 }
-
 
 /* ============================
    CONTENEDOR DE IMAGEN EN DETALLE
 =============================== */
 .contenedor-imagen-detalle {
   width: 100%;
-  height: 350px;           /* Altura fija para uniformidad */
-  display: flex;           /* Flex para centrar */
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center;     /* Centra verticalmente */
-  background-color: #eee;  /* Fondo tenue si quedan bordes */
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--gris-placeholder);
   border-radius: 12px;
   margin-bottom: 20px;
   overflow: hidden;
@@ -512,7 +529,7 @@ select:focus {
 .imagen-detalle-mascota {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;     /* Ajusta entera dentro del contenedor */
+  object-fit: contain;
   display: block;
 }
 
@@ -528,53 +545,7 @@ select:focus {
   max-width: 500px;
   margin: auto;
   padding: 30px;
-  background-color: #F9F9F9;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
-}
-
-/* Sección cómo funciona */
-.circulo {
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  border-radius: 50%;
-  display: inline-block;
-  font-weight: bold;
-}
-
-.btn-block, .w-100 {
-  width: 100% !important;
-}
-
-.link-recuperar {
-  font-size: 0.97em;
-  color: #fc9246;
-  text-decoration: none;
-}
-
-.link-recuperar:hover {
-  text-decoration: underline;
-  color: #d46d20;
-}
-
-.text-center {
-  text-align: center;
-}
-
-/* ============================
-   FORMULARIOS DE AUTENTICACIÓN
-=============================== */
-.seccion-registro {
-  padding: 60px 0;
-  background-color: #fff;
-}
-
-.formulario-registro {
-  max-width: 500px;
-  margin: auto;
-  padding: 30px;
-  background-color: #F9F9F9;
+  background-color: var(--fondo-tarjeta);
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0,0,0,0.05);
 }
@@ -587,7 +558,7 @@ select:focus {
   font-size: 1.1em;
   padding: 12px 10px;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--gris-input);
   background: #fff;
   margin-bottom: 6px;
 }
@@ -601,7 +572,7 @@ select:focus {
   width: 100% !important;
   padding: 12px 0;
   font-size: 1.1em;
-  background: #fc9246;
+  background: var(--naranja-principal);
   border: none;
   color: #fff;
   border-radius: 12px;
@@ -609,26 +580,15 @@ select:focus {
 }
 
 .btn-primary:hover {
-  background: #d46d20;
+  background: var(--naranja-hover);
 }
 
-.text-center {
-  text-align: center;
-}
+.text-center { text-align: center; }
 
 /* Para animación de entrada si la usas */
-.animar-entrada {
-  animation: fadeIn 1.2s ease-in;
-}
+.animar-entrada { animation: fadeIn 1.2s ease-in; }
 
-@keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-.position-relative {
-  position: relative;
-}
+.position-relative { position: relative; }
 .toggle-password {
   position: absolute;
   right: 18px;
@@ -639,17 +599,10 @@ select:focus {
   user-select: none;
   z-index: 2;
 }
-.toggle-password:hover {
-  color: #fc9246;
-}
+.toggle-password:hover { color: var(--naranja-principal); }
 
 /*SECCION MASCOTAS EXTRAVIADAS */
-
-
-.filtros-mascotas {
-  gap: 14px;
-  margin-bottom: 20px;
-}
+.filtros-mascotas { gap: 14px; margin-bottom: 20px; }
 .filtros-mascotas .form-control,
 .filtros-mascotas .boton {
   min-width: 160px;
@@ -658,7 +611,7 @@ select:focus {
 .filtro-texto { max-width: 220px; }
 .filtro-select { max-width: 180px; }
 .badge-especie {
-  background: #F27F3D;  /* Naranja pastel */
+  background: var(--naranja-principal);
   color: #fff;
   font-weight: 600;
   border-radius: 8px;
@@ -667,30 +620,17 @@ select:focus {
   margin-right: 5px;
 }
 .badge-raza {
-  background: #F9B8C3;  /* Rosa pastel */
+  background: var(--naranja-acento);
   color: #fff;
   font-weight: 600;
   border-radius: 8px;
   padding: 0.4em 0.8em;
   font-size: 1em;
 }
-.paginacion .pagination {
-  margin: 0 auto;
-  justify-content: center;
-}
-.page-item .page-link {
-  color: #F27F3D;
-  border: none;
-  background: none;
-}
-.page-item.active .page-link {
-  background: #F27F3D;
-  color: #fff;
-  border-radius: 8px;
-}
-.page-item.disabled .page-link {
-  color: #ccc;
-}
+.paginacion .pagination { margin: 0 auto; justify-content: center; }
+.page-item .page-link { color: var(--naranja-principal); border: none; background: none; }
+.page-item.active .page-link { background: var(--naranja-principal); color: #fff; border-radius: 8px; }
+.page-item.disabled .page-link { color: #ccc; }
 @media (max-width: 991px) {
   .col-md-4 { flex: 0 0 50%; max-width: 50%; }
 }
@@ -699,9 +639,8 @@ select:focus {
 }
 
 /*SECCION PUBLICAR */
-
 .form-upload {
-  border: 2px dashed #F27F3D;
+  border: 2px dashed var(--naranja-principal);
   border-radius: 12px;
   padding: 1.2em;
   text-align: center;
@@ -710,7 +649,7 @@ select:focus {
   position: relative;
 }
 .upload-msg {
-  color: #F27F3D;
+  color: var(--naranja-principal);
   font-size: 1em;
   margin-top: 0.6em;
 }
@@ -719,10 +658,4 @@ select:focus {
   position: static;
   width: 100%;
   cursor: pointer;
-  margin: 0;
-}
-input[readonly], input[disabled] {
-  background: #f3f3f3;
-  color: #999;
-  cursor: not-allowed;
 }
