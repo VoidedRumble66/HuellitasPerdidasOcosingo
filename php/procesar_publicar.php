@@ -6,9 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['usuario_id'])) {
     $nombreMascota = trim($_POST['nombreMascota'] ?? '');
     $especie = intval($_POST['especie'] ?? 0);
     $raza = intval($_POST['raza'] ?? 0);
-
-    $especie = trim($_POST['especie'] ?? '');
-    $raza = trim($_POST['raza'] ?? '');
     $descripcion = trim($_POST['descripcion'] ?? '');
     $ubicacion = trim($_POST['ubicacion'] ?? '');
     $fecha = $_POST['fecha'] ?? date('Y-m-d');
@@ -21,10 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['usuario_id'])) {
 
     $stmt = $conexion->prepare('INSERT INTO mascota(nombredemascota, id_especie, id_raza, descripcion, ubicacion, fechadeextravio, foto, id_usuario) VALUES (?,?,?,?,?,?,?,?)');
     $stmt->bind_param('siissssi', $nombreMascota, $especie, $raza, $descripcion, $ubicacion, $fecha, $archivo, $_SESSION['usuario_id']);
-
-    $stmt = $conexion->prepare('INSERT INTO mascota(nombredemascota, especie, raza, descripcion, ubicacion, fechadeextravio, foto, id_usuario) VALUES (?,?,?,?,?,?,?,?)');
-    $stmt->bind_param('sssssssi', $nombreMascota, $especie, $raza, $descripcion, $ubicacion, $fecha, $archivo, $_SESSION['usuario_id']);
     $stmt->execute();
 }
 
 header('Location: ../extraviados.php');
+
