@@ -46,6 +46,7 @@ include 'php/menu.php';
     </form>
     <p class="mt-3 text-center">¿Ya tienes cuenta? <a href="login.php">Inicia sesión</a></p>
   </div>
+  
   <script>
 function togglePassword(inputId, elem) {
   const input = document.getElementById(inputId);

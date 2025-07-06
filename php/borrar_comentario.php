@@ -1,9 +1,9 @@
 <?php
 session_start();
-require 'php/conexion.php';
+require 'conexion.php'; // ¡Ya estás en la carpeta php!
 
 if (!isset($_SESSION['usuario_id']) || !isset($_GET['id']) || !isset($_GET['mascota'])) {
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit;
 }
 
@@ -25,6 +25,6 @@ $stmt = $conexion->prepare("DELETE FROM comentario WHERE id_comentario = ?");
 $stmt->bind_param('i', $id_comentario);
 $stmt->execute();
 
-header("Location: detalle-mascota.php?id=$id_mascota");
+header("Location: ../detalle_mascota.php?id=$id_mascota");
 exit;
 ?>

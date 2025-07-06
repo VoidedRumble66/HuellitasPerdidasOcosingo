@@ -73,7 +73,6 @@ $stmt->bind_param('i', $id);
 $stmt->execute();
 $result = $stmt->get_result();
 
-
 while($row = $result->fetch_assoc()) {
     $comentarios[] = $row;
 }
@@ -98,8 +97,8 @@ while($row = $result->fetch_assoc()) {
 
         <!-- Solo mostrar si es el usuario actual -->
         <?php if (isset($_SESSION['usuario_id']) && $comentario['id_usuario'] == $_SESSION['usuario_id']): ?>
-          <a href="editar_comentario.php?id=<?= $comentario['id_comentario'] ?>">Editar</a>
-          <a href="borrar_comentario.php?id=<?= $comentario['id_comentario'] ?>&mascota=<?= $id ?>" onclick="return confirm('¿Seguro de borrar?')">Borrar</a>
+          <a href="php/editar_comentario.php?id=<?= $comentario['id_comentario'] ?>">Editar</a>
+          <a href="php/borrar_comentario.php?id=<?= $comentario['id_comentario'] ?>&mascota=<?= $id ?>" onclick="return confirm('¿Seguro de borrar?')">Borrar</a>
         <?php endif; ?>
 
         <!-- Mostrar respuestas -->
@@ -119,8 +118,8 @@ while($row = $result->fetch_assoc()) {
               <span><?= date('d/m/Y H:i', strtotime($respuesta['fechadelcomentario'])) ?></span>
               <p><?= nl2br(htmlspecialchars($respuesta['comentario'])) ?></p>
               <?php if (isset($_SESSION['usuario_id']) && $respuesta['id_usuario'] == $_SESSION['usuario_id']): ?>
-                <a href="editar_comentario.php?id=<?= $respuesta['id_comentario'] ?>">Editar</a>
-                <a href="borrar_comentario.php?id=<?= $respuesta['id_comentario'] ?>&mascota=<?= $id ?>" onclick="return confirm('¿Seguro de borrar?')">Borrar</a>
+                <a href="php/editar_comentario.php?id=<?= $respuesta['id_comentario'] ?>">Editar</a>
+                <a href="php/borrar_comentario.php?id=<?= $respuesta['id_comentario'] ?>&mascota=<?= $id ?>" onclick="return confirm('¿Seguro de borrar?')">Borrar</a>
               <?php endif; ?>
             </div>
           <?php endwhile; ?>
