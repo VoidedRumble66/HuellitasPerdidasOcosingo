@@ -74,7 +74,7 @@ $stm->close();
               <td><?= date('d/m/Y', strtotime($mascota['fechadeextravio'])) ?></td>
               <td>
                 <a href="editar_mascota.php?id=<?= $mascota['id_mascota'] ?>" class="boton-contorno btn-tabla">Editar</a>
-                <a href="borrar_mascota.php?id=<?= $mascota['id_mascota'] ?>" class="boton-contorno btn-tabla" onclick="return confirm('¿Seguro que deseas eliminar la mascota?')">Eliminar</a>
+                <a href="php/borrar_mascota.php?id=<?= $mascota['id_mascota'] ?>" class="boton-contorno btn-tabla" onclick="return confirm('¿Seguro que deseas eliminar la mascota?')">Eliminar</a>
               </td>
             </tr>
           <?php endforeach; ?>

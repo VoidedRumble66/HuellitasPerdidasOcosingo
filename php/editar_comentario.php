@@ -1,7 +1,9 @@
 <?php
+// Inicia la sesión y conexión
 session_start();
 require 'conexion.php';
 
+// Debe existir un usuario autenticado y un id de comentario
 if (!isset($_SESSION['usuario_id']) || !isset($_GET['id'])) {
     header('Location: ../index.php');
     exit;
@@ -9,7 +11,7 @@ if (!isset($_SESSION['usuario_id']) || !isset($_GET['id'])) {
 
 $id_comentario = intval($_GET['id']);
 
-// Solo permite editar comentarios del usuario actual
+// Verifica que el comentario sea del usuario actual
 $stmt = $conexion->prepare("SELECT * FROM comentario WHERE id_comentario = ? AND id_usuario = ?");
 $stmt->bind_param('ii', $id_comentario, $_SESSION['usuario_id']);
 $stmt->execute();
@@ -20,17 +22,18 @@ if (!$comentario) {
     exit;
 }
 
+// Al enviar el formulario se actualiza el comentario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nuevoComentario = trim($_POST['comentario']);
     $stmt = $conexion->prepare("UPDATE comentario SET comentario = ? WHERE id_comentario = ?");
     $stmt->bind_param('si', $nuevoComentario, $id_comentario);
     $stmt->execute();
 
-    header("Location: ../detalle_mascota.php?id=" . $comentario['id_mascota']);
+    header("Location: ../detalle-mascota.php?id=" . $comentario['id_mascota']);
     exit;
 }
 ?>
-<!-- HTML para el formulario de edición, igual a tu mockup y responsivo -->
+<!-- Formulario de edición sencillo -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="POST" class="formulario-comentario">
         <textarea name="comentario" required rows="4" style="width:100%;"><?= htmlspecialchars($comentario['comentario']) ?></textarea>
         <button type="submit" class="boton" style="margin-top:15px;">Guardar Cambios</button>
-        <a href="../detalle_mascota.php?id=<?= $comentario['id_mascota'] ?>" class="boton-contorno" style="margin-top:10px;">Cancelar</a>
+        <a href="../detalle-mascota.php?id=<?= $comentario['id_mascota'] ?>" class="boton-contorno" style="margin-top:10px;">Cancelar</a>
     </form>
 </div>
 </body>
