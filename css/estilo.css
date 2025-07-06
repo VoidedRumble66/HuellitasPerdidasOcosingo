@@ -213,33 +213,6 @@ body {
   to { opacity: 1; }
 }
 
-/* ============================
-   SECCIÓN DE INTRODUCCIÓN
-=============================== */
-.introduccion {
-  padding: 60px 0;
-  text-align: center;
-}
-
-.titulo-seccion {
-  font-size: 32px;
-  color: var(--naranja-principal);
-  margin-bottom: 20px;
-}
-
-.texto-intro {
-  font-size: 18px;
-  max-width: 800px;
-  margin: 0 auto 30px;
-  line-height: 1.6;
-}
-
-.grupo-botones .boton,
-.grupo-botones .boton-contorno {
-  width: 100%;
-  display: inline-block;
-  margin-bottom: 10px;
-}
 
 /* ============================
    BOTONES
@@ -286,51 +259,6 @@ body {
   background-color: var(--verde-hover);
 }
 
-/* ============================
-   GALERÍA DESTACADA
-=============================== */
-.galeria {
-  padding: 40px 0;
-}
-
-.contenedor-galeria {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.imagen-galeria {
-  width: 300px;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-/* ============================
-   TESTIMONIOS
-=============================== */
-.seccion-testimonios {
-  padding: 60px 0;
-  background-color: var(--naranja-acento);
-  text-align: center;
-}
-
-.item-testimonio {
-  margin-bottom: 30px;
-}
-
-.texto-testimonio {
-  font-style: italic;
-  font-size: 18px;
-  color: var(--gris-medio);
-}
-
-.nombre-testimonio {
-  font-weight: bold;
-  color: var(--verde-principal);
-}
 
 /* ============================
    SECCIÓN: PUBLICAR MASCOTA
@@ -480,11 +408,6 @@ select:focus {
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Hover suave para botones */
-.boton,
-.boton-contorno {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
 
 .tarjeta-mascota {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -508,7 +431,6 @@ select:focus {
   }
   .texto-deslizador h2 { font-size: 28px; }
   .texto-deslizador p { font-size: 16px; }
-  .imagen-galeria { width: 100%; max-width: 320px; }
 }
 
 /* ============================
@@ -657,10 +579,6 @@ select:focus {
   padding: 0.4em 0.8em;
   font-size: 1em;
 }
-.paginacion .pagination { margin: 0 auto; justify-content: center; }
-.page-item .page-link { color: var(--naranja-principal); border: none; background: none; }
-.page-item.active .page-link { background: var(--naranja-principal); color: #fff; border-radius: 8px; }
-.page-item.disabled .page-link { color: #ccc; }
 @media (max-width: 991px) {
   .col-md-4 { flex: 0 0 50%; max-width: 50%; }
 }
@@ -902,15 +820,6 @@ select:focus {
   margin-bottom: 8px;
   font-size: 1.04em;
 }
-.preferencias-noti {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-.preferencias-noti li {
-  margin-bottom: 5px;
-  font-size: 0.97em;
-}
 .mt-2 { margin-top: 10px; }
 .mt-3 { margin-top: 18px; }
 .mt-5 { margin-top: 35px; }
@@ -941,18 +850,6 @@ select:focus {
   font-size: 0.95em;
   padding: 6px 14px;
   margin: 2px 3px;
-}
-.estado-extraviado {
-  background: var(--naranja-principal);
-  color: #fff;
-  padding: 3px 12px;
-  border-radius: 8px;
-}
-.estado-encontrado {
-  background: var(--verde-principal);
-  color: #fff;
-  padding: 3px 12px;
-  border-radius: 8px;
 }
 @media (max-width: 900px) {
   .perfil-tarjeta { flex-direction: column; }

@@ -1,6 +1,7 @@
 <?php
+// Inicia la sesión y carga la conexión a la base de datos
 session_start();
-require 'conexion.php'; // ¡Ya estás en la carpeta php!
+require 'conexion.php'; // El archivo ya está en la carpeta php
 
 if (!isset($_SESSION['usuario_id']) || !isset($_GET['id']) || !isset($_GET['mascota'])) {
     header('Location: ../index.php');
@@ -10,7 +11,7 @@ if (!isset($_SESSION['usuario_id']) || !isset($_GET['id']) || !isset($_GET['masc
 $id_comentario = intval($_GET['id']);
 $id_mascota = intval($_GET['mascota']);
 
-// Solo permite borrar comentarios del usuario actual
+// Verifica que el comentario pertenezca al usuario actual
 $stmt = $conexion->prepare("SELECT * FROM comentario WHERE id_comentario = ? AND id_usuario = ?");
 $stmt->bind_param('ii', $id_comentario, $_SESSION['usuario_id']);
 $stmt->execute();
@@ -38,8 +39,10 @@ function eliminarComentario($conexion, $id) {
     $stmtDel->execute();
 }
 
+// Ejecuta la eliminación en cascada
 eliminarComentario($conexion, $id_comentario);
 
+// Vuelve al detalle de la mascota
 header("Location: ../detalle-mascota.php?id=$id_mascota");
 exit;
 ?>
