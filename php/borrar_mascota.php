@@ -1,7 +1,9 @@
 <?php
+// Inicia la sesión y conexión a la base de datos
 session_start();
 require 'conexion.php';
 
+// Asegura que el usuario esté autenticado
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: ../login.php');
     exit;
@@ -10,7 +12,7 @@ if (!isset($_SESSION['usuario_id'])) {
 $id_usuario = $_SESSION['usuario_id'];
 $id_mascota = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-// Primero, comprueba que la mascota sea del usuario actual
+// Comprueba que la mascota pertenezca al usuario actual
 $stmt = $conexion->prepare("SELECT id_mascota FROM mascota WHERE id_mascota=? AND id_usuario=?");
 $stmt->bind_param('ii', $id_mascota, $id_usuario);
 $stmt->execute();
@@ -36,6 +38,7 @@ function eliminarComentario($conexion, $id) {
     $stmtDel->execute();
 }
 
+// Obtiene los comentarios de la mascota y los elimina en cascada
 // Obtener comentarios principales de la mascota y eliminarlos en cascada
 $stmtComentarios = $conexion->prepare("SELECT id_comentario FROM comentario WHERE id_mascota = ?");
 $stmtComentarios->bind_param('i', $id_mascota);

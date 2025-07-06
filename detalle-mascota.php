@@ -1,12 +1,15 @@
 <?php
+// Inicio de sesión y archivos comunes
 session_start();
 require 'php/conexion.php';
 include 'php/head.php';
 include 'php/menu.php';
 
+// Obtiene el id de la mascota desde la URL
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $mascota = null;
 
+// Si existe un id válido, consulta los datos de la mascota
 if ($id > 0) {
     $stmt = $conexion->prepare('SELECT m.nombredemascota, e.nombre AS especie, r.nombre AS raza, m.descripcion, m.foto, m.ubicacion, m.fechadeextravio, m.id_usuario
                                 FROM mascota m
@@ -53,6 +56,7 @@ if ($id > 0) {
 <section class="seccion-comentarios">
   <div class="contenedor">
     <h3>Comentarios</h3>
+    <!-- Formulario para agregar un nuevo comentario -->
     <form action="php/procesar_comentario.php" method="POST" class="formulario-comentario">
       <textarea name="comentario" required placeholder="Escribe un comentario..." rows="3"></textarea>
       <input type="hidden" name="id_mascota" value="<?= $id ?>">
@@ -73,6 +77,7 @@ $stmt->bind_param('i', $id);
 $stmt->execute();
 $result = $stmt->get_result();
 
+// Almacena los comentarios en un arreglo
 while($row = $result->fetch_assoc()) {
     $comentarios[] = $row;
 }
@@ -111,6 +116,7 @@ while($row = $result->fetch_assoc()) {
         $stmt2->execute();
         $respuestas = $stmt2->get_result();
         ?>
+        <!-- Listado de respuestas al comentario -->
         <div class="respuestas">
           <?php while ($respuesta = $respuestas->fetch_assoc()): ?>
             <div class="comentario-respuesta">

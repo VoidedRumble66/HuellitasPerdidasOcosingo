@@ -1,20 +1,22 @@
 <?php
+$tituloPagina = 'Mascotas Extraviadas';
+
+// Inicia sesión y comprueba que el usuario esté autenticado
 session_start();
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
     exit;
 }
-$tituloPagina = 'Mascotas Extraviadas';
 require 'php/conexion.php';
 include 'php/head.php';
 include 'php/menu.php';
 
-// 1. Leer filtros
+// --- 1. Leer filtros de la barra de búsqueda ---
 $buscar  = isset($_GET['buscar'])  ? trim($_GET['buscar'])  : '';
 $especie = isset($_GET['especie']) ? trim($_GET['especie']) : '';
 $raza    = isset($_GET['raza'])    ? trim($_GET['raza'])    : '';
 
-// Obtener especies y razas de la BD
+// --- Obtener especies y razas de la BD ---
 $especies = [];
 $res_especie = $conexion->query("SELECT nombre FROM especie ORDER BY nombre ASC");
 while ($row = $res_especie->fetch_assoc()) $especies[] = $row['nombre'];
@@ -23,7 +25,7 @@ $razas = [];
 $res_raza = $conexion->query("SELECT nombre FROM raza ORDER BY nombre ASC");
 while ($row = $res_raza->fetch_assoc()) $razas[] = $row['nombre'];
 
-// 2. Construir filtro dinámico
+// --- 2. Construir filtro dinámico ---
 $where = [];
 $params = [];
 $types = '';
@@ -67,6 +69,8 @@ if (!empty($params)) {
 }
 ?>
 
+<!-- Vista de resultados de mascotas -->
+
 <section class="seccion-mascotas-extraviadas">
   <div class="contenedor">
     <h2 class="titulo-seccion animar-entrada text-center">Mascotas Extraviadas</h2>
@@ -96,6 +100,7 @@ if (!empty($params)) {
     <!-- Tarjetas de mascotas -->
     <div class="row contenedor-tarjetas">
       <?php if(count($mascotas)): ?>
+        <?php // Mostrar cada mascota encontrada ?>
         <?php foreach ($mascotas as $m): ?>
         <div class="col-md-4 col-sm-6 mb-4">
           <div class="tarjeta-mascota animar-entrada">
@@ -116,6 +121,7 @@ if (!empty($params)) {
         </div>
         <?php endforeach; ?>
       <?php else: ?>
+        <?php // Si no hay mascotas que coincidan con el filtro ?>
         <div class="col-12">
           <p class="text-center">No se encontraron mascotas con ese filtro.</p>
         </div>
@@ -125,6 +131,7 @@ if (!empty($params)) {
   </div>
 </section>
 
+<!-- Sección de llamada a la acción final -->
 <section class="seccion-pregunta bg-light py-5 text-center">
   <div class="contenedor">
     <h2 class="titulo-seccion">¿Perdiste a tu mascota?</h2>
