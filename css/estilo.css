@@ -76,13 +76,29 @@ body {
 }
 
 .logo {
-  font-size: 28px;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin: 0;
+  color: var(--naranja-principal, #e65100); /* Usa tu color primario */
+  letter-spacing: 1px;
 }
 
-.logo span {
-  color: var(--naranja-acento);
+.logo-navbar {
+  height: 44px;          /* Ajusta a tu gusto (38–50px recomendado) */
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+  filter: drop-shadow(0 1px 6px rgba(0,0,0,0.08));
 }
+
+.nombre-sitio {
+  vertical-align: middle;
+  font-family: inherit;
+}
+
 
 .navegacion {
   display: flex;

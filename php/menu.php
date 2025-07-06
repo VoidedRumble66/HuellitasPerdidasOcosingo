@@ -11,7 +11,10 @@ function activo($archivo) {
 ?>
 <header class="encabezado">
   <div class="contenedor navegacion">
-    <h1 class="logo">Huellitas Perdidas</h1>
+    <h1 class="logo">
+      <img src="/../img/logo-huellitas.png" alt="Logo Huellitas Perdidas" class="logo-navbar">
+      <span class="nombre-sitio">Huellitas Perdidas</span>
+    </h1>
     <nav>
       <ul class="lista-navegacion">
         <?php if(isset($_SESSION['usuario_id'])): ?>
