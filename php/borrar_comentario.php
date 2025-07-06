@@ -43,6 +43,8 @@ function eliminarComentario($conexion, $id) {
 eliminarComentario($conexion, $id_comentario);
 
 // Vuelve al detalle de la mascota
+eliminarComentario($conexion, $id_comentario);
+
 header("Location: ../detalle-mascota.php?id=$id_mascota");
 exit;
 ?>

@@ -39,6 +39,7 @@ function eliminarComentario($conexion, $id) {
 }
 
 // Obtiene los comentarios de la mascota y los elimina en cascada
+// Obtener comentarios principales de la mascota y eliminarlos en cascada
 $stmtComentarios = $conexion->prepare("SELECT id_comentario FROM comentario WHERE id_mascota = ?");
 $stmtComentarios->bind_param('i', $id_mascota);
 $stmtComentarios->execute();
