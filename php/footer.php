@@ -1,11 +1,15 @@
 <?php
 // footer.php — pie de página
 ?>
-<footer class="pie-pagina bg-secundario text-white text-center py-4 footer">
-  <div class="container contenedor">
+<footer class="footer">
+  <div class="footer-content">
     <p>&copy; 2025 Patitas Perdidas Ocosingo. Todos los derechos reservados.</p>
-    <a href="#" class="enlace-footer">Política de privacidad</a>
-    <img src="/img/logo-utselva.png" alt="Logo UTSelva" class="img-utselva mt-2">
+    <div class="footer-links">
+      <a href="#" class="footer-link">Términos y Condiciones</a>
+      <span class="footer-separator">|</span>
+      <a href="#" class="footer-link">Política de Privacidad</a>
+    </div>
+    <img src="/img/logo-utselva.png" alt="Logo UTSelva" class="img-utselva">
   </div>
 </footer>
 <!-- Scripts de Bootstrap guardados localmente -->

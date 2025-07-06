@@ -443,6 +443,58 @@ select:focus {
   padding: 20px 0;
   margin-top: 40px;
 }
+.footer {
+  background-color: var(--verde-principal);
+  color: #fff;
+  text-align: center;
+  padding: 20px 0 10px 0;
+  margin-top: 40px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  border-top: none;
+  box-shadow: none;
+}
+
+.footer-content {
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-links {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.1px;
+}
+
+.footer-link {
+  color: #2196f3;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0 4px;
+  transition: color 0.2s;
+}
+
+.footer-link:hover,
+.footer-link:focus {
+  color: #1769aa;
+  text-decoration: underline;
+}
+
+.footer-separator {
+  color: #2196f3;
+  font-weight: bold;
+  padding: 0 2px;
+  user-select: none;
+}
+
+.img-utselva {
+  max-width: 90px;
+  margin-top: 6px;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.06));
+}
 
 /* ============================
    IMÁGENES UNIFORMES EN TARJETAS
