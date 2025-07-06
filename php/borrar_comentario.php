@@ -21,10 +21,25 @@ if (!$comentario) {
     exit;
 }
 
-$stmt = $conexion->prepare("DELETE FROM comentario WHERE id_comentario = ?");
-$stmt->bind_param('i', $id_comentario);
-$stmt->execute();
 
-header("Location: ../detalle_mascota.php?id=$id_mascota");
+// Función recursiva para eliminar un comentario y todas sus respuestas
+function eliminarComentario($conexion, $id) {
+    // Primero elimina las respuestas de este comentario
+    $stmtHijos = $conexion->prepare("SELECT id_comentario FROM comentario WHERE id_responde = ?");
+    $stmtHijos->bind_param('i', $id);
+    $stmtHijos->execute();
+    $res = $stmtHijos->get_result();
+    while ($row = $res->fetch_assoc()) {
+        eliminarComentario($conexion, $row['id_comentario']);
+    }
+    // Ahora elimina el propio comentario
+    $stmtDel = $conexion->prepare("DELETE FROM comentario WHERE id_comentario = ?");
+    $stmtDel->bind_param('i', $id);
+    $stmtDel->execute();
+}
+
+eliminarComentario($conexion, $id_comentario);
+
+header("Location: ../detalle-mascota.php?id=$id_mascota");
 exit;
 ?>

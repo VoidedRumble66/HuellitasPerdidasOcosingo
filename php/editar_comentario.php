@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param('si', $nuevoComentario, $id_comentario);
     $stmt->execute();
 
-    header("Location: ../detalle_mascota.php?id=" . $comentario['id_mascota']);
+    header("Location: ../detalle-mascota.php?id=" . $comentario['id_mascota']);
     exit;
 }
 ?>
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="POST" class="formulario-comentario">
         <textarea name="comentario" required rows="4" style="width:100%;"><?= htmlspecialchars($comentario['comentario']) ?></textarea>
         <button type="submit" class="boton" style="margin-top:15px;">Guardar Cambios</button>
-        <a href="../detalle_mascota.php?id=<?= $comentario['id_mascota'] ?>" class="boton-contorno" style="margin-top:10px;">Cancelar</a>
+        <a href="../detalle-mascota.php?id=<?= $comentario['id_mascota'] ?>" class="boton-contorno" style="margin-top:10px;">Cancelar</a>
     </form>
 </div>
 </body>
